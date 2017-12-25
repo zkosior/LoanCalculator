@@ -34,12 +34,27 @@
         [Test]
         public void RequestedAmountMoreThanLowestOffer_AndTheSameRate_UsesSameRate()
         {
+            var marketData = new List<LoanOffer>
+            {
+                new LoanOffer { Lender = "Jane", Rate = 0.069m, Available = 480 },
+                new LoanOffer { Lender = "Fred", Rate = 0.069m, Available = 520 }
+            };
+
+            var quote = new ThreeYearLoanQuote(marketData).CalculateFor(500);
+
+            Assert.AreEqual(500m, quote.Amount);
+            Assert.AreEqual(0.069m, quote.Rate);
+        }
+
+        [Test]
+        public void RequestedAmountMoreThanLowestOffer_AndDifferentRates_SumsWaightedRate()
+        {
             var marketData = InitializeMrketData();
 
-            var quote = new ThreeYearLoanQuote(marketData).CalculateFor(400);
+            var quote = new ThreeYearLoanQuote(marketData).CalculateFor(500);
 
-            Assert.AreEqual(400m, quote.Amount);
-            Assert.AreEqual(0.069m, quote.Rate);
+            Assert.AreEqual(500m, quote.Amount);
+            Assert.AreEqual(0.06908m, quote.Rate);
         }
 
         private static List<LoanOffer> InitializeMrketData()
