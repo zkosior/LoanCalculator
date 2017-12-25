@@ -1,6 +1,6 @@
 ﻿namespace Zopa.RecruitmentTest
 {
-    using System;
+    using Zopa.RecruitmentTest.Console;
 
     internal class Program
     {
@@ -8,6 +8,7 @@
         {
             var file = args[0];
             var amount = decimal.Parse(args[1]);
+            var offers = new CsvLoans().LoadFrom(file);
         }
     }
 }
