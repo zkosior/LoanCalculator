@@ -14,23 +14,39 @@
 
         public QuoteOffer CalculateFor(decimal amount)
         {
-            if (this.offers[0].Available > amount)
-            {
-                return new QuoteOffer { Amount = amount, Rate = this.offers[0].Rate };
-            }
+            decimal waightedRate = CalculateWaightedRate(amount);
 
-            if (this.offers[0].Available + this.offers[1].Available > amount)
-            {
-                var waightedRate = this.CalculateWaightedRate(amount, this.offers[0].Available, amount - this.offers[0].Available, this.offers[0].Rate, this.offers[1].Rate);
-                return new QuoteOffer { Amount = amount, Rate = waightedRate };
-            }
-
-            return new QuoteOffer { Amount = 1000, Rate = 0.07m, MonthlyPayment = 30.78m, TotalPayment = 1108.10m };
+            return new QuoteOffer { Amount = amount, Rate = waightedRate };
         }
 
-        private decimal CalculateWaightedRate(decimal amount, decimal firstAmount, decimal secondAmount, decimal firstRate, decimal secondRate)
+        private decimal CalculateWaightedRate(decimal amount)
         {
-            return (firstRate * (firstAmount / amount)) + (secondRate * (secondAmount / amount));
+            var outstandingAmount = amount;
+            var cumulativeRate = 0m;
+            var currentStepAmount = 0m;
+
+            foreach (var offer in this.offers)
+            {
+                if (offer.Available >= outstandingAmount)
+                {
+                    currentStepAmount = outstandingAmount;
+                    outstandingAmount = 0;
+                }
+                else
+                {
+                    currentStepAmount = offer.Available;
+                    outstandingAmount -= offer.Available;
+                }
+
+                cumulativeRate += offer.Rate * (currentStepAmount / amount);
+
+                if (outstandingAmount == 0)
+                {
+                    break;
+                }
+            }
+
+            return cumulativeRate;
         }
     }
 }

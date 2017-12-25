@@ -8,16 +8,14 @@
     public class ThreeYearLoanQuoteTests
     {
         [Test]
-        public void RequestedAmount()
+        public void SuccessScenario_ModifiedToNotRoundRate()
         {
             List<LoanOffer> marketData = InitializeMrketData();
 
             var quote = new ThreeYearLoanQuote(marketData).CalculateFor(1000);
 
             Assert.AreEqual(1000m, quote.Amount);
-            Assert.AreEqual(0.07m, quote.Rate);
-            Assert.AreEqual(30.78m, quote.MonthlyPayment);
-            Assert.AreEqual(1108.10m, quote.TotalPayment);
+            Assert.AreEqual(0.07004m, quote.Rate);
         }
 
         [Test]
