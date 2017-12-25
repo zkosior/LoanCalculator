@@ -1,8 +1,8 @@
-﻿namespace Zopa.RecruitmentTest.Console
+﻿namespace ZKosior.ZopaRecruitmentTest.Console
 {
     using System;
     using System.Globalization;
-    using Zopa.RecruitmentTest.LoanCalculator;
+    using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
     internal class Program
     {

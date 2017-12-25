@@ -1,4 +1,4 @@
-﻿namespace Zopa.RecruitmentTest.LoanCalculator
+﻿namespace ZKosior.ZopaRecruitmentTest.LoanCalculator
 {
     using System.Collections.Generic;
     using System.Linq;

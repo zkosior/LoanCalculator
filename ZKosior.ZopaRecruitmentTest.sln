@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKosior.ZopaRecruitmentTest.Console", "ZKosior.ZopaRecruitmentTest.Console\ZKosior.ZopaRecruitmentTest.Console.csproj", "{8989649F-9F27-41D4-AEBD-E4233692FEBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKosior.ZopaRecruitmentTest.LoanCalculator", "ZKosior.ZopaRecruitmentTest.LoanCalculator\ZKosior.ZopaRecruitmentTest.LoanCalculator.csproj", "{0EF78DE4-9CC9-453A-8AC5-487C4A9D9114}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKosior.ZopaRecruitmentTest.Tests", "ZKosior.ZopaRecruitmentTest.Tests\ZKosior.ZopaRecruitmentTest.Tests.csproj", "{AB6F8F85-0DE7-4B1B-92F8-11BC9A7B5C9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8989649F-9F27-41D4-AEBD-E4233692FEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8989649F-9F27-41D4-AEBD-E4233692FEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8989649F-9F27-41D4-AEBD-E4233692FEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8989649F-9F27-41D4-AEBD-E4233692FEBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EF78DE4-9CC9-453A-8AC5-487C4A9D9114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EF78DE4-9CC9-453A-8AC5-487C4A9D9114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF78DE4-9CC9-453A-8AC5-487C4A9D9114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EF78DE4-9CC9-453A-8AC5-487C4A9D9114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6F8F85-0DE7-4B1B-92F8-11BC9A7B5C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6F8F85-0DE7-4B1B-92F8-11BC9A7B5C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6F8F85-0DE7-4B1B-92F8-11BC9A7B5C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6F8F85-0DE7-4B1B-92F8-11BC9A7B5C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2786540-D14A-448D-9052-7CD92B09CB61}
+	EndGlobalSection
+EndGlobal

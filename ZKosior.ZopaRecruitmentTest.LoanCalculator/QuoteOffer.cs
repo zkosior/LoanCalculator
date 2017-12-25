@@ -1,4 +1,4 @@
-﻿namespace Zopa.RecruitmentTest.LoanCalculator
+﻿namespace ZKosior.ZopaRecruitmentTest.LoanCalculator
 {
     public class QuoteOffer
     {

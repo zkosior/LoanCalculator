@@ -1,9 +1,9 @@
-﻿namespace Zopa.RecruitmentTest.Console
+﻿namespace ZKosior.ZopaRecruitmentTest.Console
 {
     using System.Collections.Generic;
     using System.IO;
     using CsvHelper;
-    using Zopa.RecruitmentTest.LoanCalculator;
+    using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
     public class CsvLoans
     {
