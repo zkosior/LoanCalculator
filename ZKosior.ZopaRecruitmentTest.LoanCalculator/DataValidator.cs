@@ -25,6 +25,11 @@
         {
             StringBuilder errors = new StringBuilder();
 
+            if (requestedLoan % 100 != 0)
+            {
+                errors.AppendLine("Requested amount needs to be a multiplication of 100.");
+            }
+
             if (requestedLoan > marketData.Sum(p => p.Available))
             {
                 errors.AppendLine("It is not possible to provide a quote at this time due to insuficiend market funds.");

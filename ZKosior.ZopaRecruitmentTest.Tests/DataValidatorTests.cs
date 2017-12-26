@@ -31,6 +31,17 @@
             Assert.Contains("It is not possible to provide a quote at this time due to insuficiend market funds.", validator.Error.Split("\r\n"));
         }
 
+        [Test]
+        public void WhenLoanNotDivisableBy100_Invalid()
+        {
+            List<LoanOffer> marketData = InitializeMrketData();
+
+            var validator = DataValidator.Validate(marketData, 2040);
+
+            Assert.IsFalse(validator.IsDataValid);
+            Assert.Contains("Requested amount needs to be a multiplication of 100.", validator.Error.Split("\r\n"));
+        }
+
         private static List<LoanOffer> InitializeMrketData()
         {
             return new List<LoanOffer>
