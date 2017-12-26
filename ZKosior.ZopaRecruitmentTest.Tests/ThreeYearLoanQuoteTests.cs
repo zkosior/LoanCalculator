@@ -56,7 +56,7 @@
         }
 
         [Test]
-        public void CalculatesMonthlyPayment()
+        public void CalculatesMonthlyAndTotalPayment()
         {
             List<LoanOffer> marketData = InitializeMrketData();
 
@@ -65,6 +65,7 @@
             Assert.AreEqual(1000m, quote.Amount);
             Assert.AreEqual(0.07004m, quote.Rate);
             Assert.AreEqual(30.878925761087660385244806m, quote.MonthlyPayment);
+            Assert.AreEqual(1111.641327399155773868813016m, quote.TotalPayment);
         }
 
         private static List<LoanOffer> InitializeMrketData()

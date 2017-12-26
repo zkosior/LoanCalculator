@@ -18,7 +18,7 @@
             var waightedRate = this.CalculateWaightedRate(amount);
             var monthlyPayment = this.CalculateMonthlyPayment(amount, waightedRate);
 
-            return new QuoteOffer { Amount = amount, Rate = waightedRate, MonthlyPayment = monthlyPayment };
+            return new QuoteOffer { Amount = amount, Rate = waightedRate, MonthlyPayment = monthlyPayment, TotalPayment = monthlyPayment * 36m };
         }
 
         private decimal CalculateWaightedRate(decimal amount)
