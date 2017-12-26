@@ -50,7 +50,7 @@
             var validator = DataValidator.Validate(marketData, 900);
 
             Assert.IsFalse(validator.IsDataValid);
-            Assert.Contains("Requested amount needs to be at least 1000.", validator.Error.Split("\r\n"));
+            Assert.Contains("Requested amount needs to be in rane 1000-15000.", validator.Error.Split("\r\n"));
         }
 
         [Test]
@@ -61,7 +61,21 @@
             var validator = DataValidator.Validate(marketData, 15100);
 
             Assert.IsFalse(validator.IsDataValid);
-            Assert.Contains("Requested amount needs to be at most 15000.", validator.Error.Split("\r\n"));
+            Assert.Contains("Requested amount needs to be in rane 1000-15000.", validator.Error.Split("\r\n"));
+        }
+
+        [Test]
+        public void WhenMarketDataRangeToLow_Invalid()
+        {
+            List<LoanOffer> marketData = new List<LoanOffer>
+            {
+                new LoanOffer { Lender = "Bob", Rate = 0m, Available = 6400 }
+            };
+
+            var validator = DataValidator.Validate(marketData, 1000);
+
+            Assert.IsFalse(validator.IsDataValid);
+            Assert.Contains("Invalid market data.", validator.Error.Split("\r\n"));
         }
 
         private static List<LoanOffer> InitializeMrketData()

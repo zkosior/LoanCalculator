@@ -25,14 +25,14 @@
         {
             StringBuilder errors = new StringBuilder();
 
-            if (requestedLoan < 1000)
+            if (!this.IsMarketDataValid(marketData))
             {
-                errors.AppendLine("Requested amount needs to be at least 1000.");
+                errors.AppendLine("Invalid market data.");
             }
 
-            if (requestedLoan > 15000)
+            if (requestedLoan < 1000 || requestedLoan > 15000)
             {
-                errors.AppendLine("Requested amount needs to be at most 15000.");
+                errors.AppendLine("Requested amount needs to be in rane 1000-15000.");
             }
 
             if (requestedLoan % 100 != 0)
@@ -46,6 +46,11 @@
             }
 
             this.Error = errors.ToString();
+        }
+
+        private bool IsMarketDataValid(IEnumerable<LoanOffer> marketData)
+        {
+            return marketData.All(p => p.Rate > 0);
         }
     }
 }
