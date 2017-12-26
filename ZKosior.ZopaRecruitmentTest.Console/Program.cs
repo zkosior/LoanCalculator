@@ -11,6 +11,14 @@
             var file = args[0];
             var amount = decimal.Parse(args[1]);
             var offers = new CsvLoans().LoadFrom(file);
+
+            var validator = DataValidator.Validate(offers, amount);
+            if (!validator.IsDataValid)
+            {
+                PrintError(validator.Error);
+                return;
+            }
+
             var quoteOffer = new ThreeYearLoanQuote(offers).CalculateFor(amount);
 
             Print(quoteOffer);
@@ -25,6 +33,11 @@
             Console.WriteLine("Rate: " + quote.Rate.ToString("P1", numberFormat));
             Console.WriteLine("Monthly repayment: " + quote.MonthlyPayment.ToString("C2", numberFormat));
             Console.WriteLine("Total repayment: " + quote.TotalPayment.ToString("C2", numberFormat));
+        }
+
+        private static void PrintError(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }
