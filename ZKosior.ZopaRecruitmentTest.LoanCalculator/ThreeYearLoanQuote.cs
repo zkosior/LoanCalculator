@@ -1,5 +1,6 @@
 ﻿namespace ZKosior.ZopaRecruitmentTest.LoanCalculator
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -14,9 +15,10 @@
 
         public QuoteOffer CalculateFor(decimal amount)
         {
-            decimal waightedRate = CalculateWaightedRate(amount);
+            var waightedRate = this.CalculateWaightedRate(amount);
+            var monthlyPayment = this.CalculateMonthlyPayment(amount, waightedRate);
 
-            return new QuoteOffer { Amount = amount, Rate = waightedRate };
+            return new QuoteOffer { Amount = amount, Rate = waightedRate, MonthlyPayment = monthlyPayment };
         }
 
         private decimal CalculateWaightedRate(decimal amount)
@@ -47,6 +49,13 @@
             }
 
             return cumulativeRate;
+        }
+
+        private decimal CalculateMonthlyPayment(decimal amount, decimal rate)
+        {
+            var monthlyRate = rate / 12m;
+
+            return (monthlyRate + (monthlyRate / (Convert.ToDecimal(Math.Pow(Convert.ToDouble(1m + monthlyRate), 36d)) - 1m))) * amount;
         }
     }
 }

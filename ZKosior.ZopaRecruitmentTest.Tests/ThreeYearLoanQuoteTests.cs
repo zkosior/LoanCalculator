@@ -55,6 +55,18 @@
             Assert.AreEqual(0.06908m, quote.Rate);
         }
 
+        [Test]
+        public void CalculatesMonthlyPayment()
+        {
+            List<LoanOffer> marketData = InitializeMrketData();
+
+            var quote = new ThreeYearLoanQuote(marketData).CalculateFor(1000);
+
+            Assert.AreEqual(1000m, quote.Amount);
+            Assert.AreEqual(0.07004m, quote.Rate);
+            Assert.AreEqual(30.878925761087660385244806m, quote.MonthlyPayment);
+        }
+
         private static List<LoanOffer> InitializeMrketData()
         {
             return new List<LoanOffer>
