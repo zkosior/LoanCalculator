@@ -25,6 +25,11 @@
         {
             StringBuilder errors = new StringBuilder();
 
+            if (requestedLoan < 1000)
+            {
+                errors.AppendLine("Requested amount needs to be at least 1000.");
+            }
+
             if (requestedLoan % 100 != 0)
             {
                 errors.AppendLine("Requested amount needs to be a multiplication of 100.");

@@ -42,6 +42,17 @@
             Assert.Contains("Requested amount needs to be a multiplication of 100.", validator.Error.Split("\r\n"));
         }
 
+        [Test]
+        public void WhenLoanLessThan1000_Invalid()
+        {
+            List<LoanOffer> marketData = InitializeMrketData();
+
+            var validator = DataValidator.Validate(marketData, 900);
+
+            Assert.IsFalse(validator.IsDataValid);
+            Assert.Contains("Requested amount needs to be at least 1000.", validator.Error.Split("\r\n"));
+        }
+
         private static List<LoanOffer> InitializeMrketData()
         {
             return new List<LoanOffer>
