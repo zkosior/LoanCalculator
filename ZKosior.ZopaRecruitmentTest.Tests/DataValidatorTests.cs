@@ -20,6 +20,17 @@
             Assert.IsEmpty(validator.Error);
         }
 
+        [Test]
+        public void WhenInsufficientMarketFunds_Invalid()
+        {
+            List<LoanOffer> marketData = InitializeMrketData();
+
+            var validator = DataValidator.Validate(marketData, 2540);
+
+            Assert.IsFalse(validator.IsDataValid);
+            Assert.Contains("It is not possible to provide a quote at this time due to insuficiend market funds.", validator.Error.Split("\r\n"));
+        }
+
         private static List<LoanOffer> InitializeMrketData()
         {
             return new List<LoanOffer>

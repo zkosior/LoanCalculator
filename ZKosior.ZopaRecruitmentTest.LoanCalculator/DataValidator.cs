@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public class DataValidator
@@ -22,7 +23,14 @@
 
         private void ValidateData(IEnumerable<LoanOffer> marketData, decimal requestedLoan)
         {
-            this.Error = string.Empty;
+            StringBuilder errors = new StringBuilder();
+
+            if (requestedLoan > marketData.Sum(p => p.Available))
+            {
+                errors.AppendLine("It is not possible to provide a quote at this time due to insuficiend market funds.");
+            }
+
+            this.Error = errors.ToString();
         }
     }
 }
