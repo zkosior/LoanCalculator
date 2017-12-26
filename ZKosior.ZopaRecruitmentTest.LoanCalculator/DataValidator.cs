@@ -30,6 +30,11 @@
                 errors.AppendLine("Requested amount needs to be at least 1000.");
             }
 
+            if (requestedLoan > 15000)
+            {
+                errors.AppendLine("Requested amount needs to be at most 15000.");
+            }
+
             if (requestedLoan % 100 != 0)
             {
                 errors.AppendLine("Requested amount needs to be a multiplication of 100.");
