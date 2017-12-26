@@ -6,6 +6,8 @@
 
     public class ThreeYearLoanQuote
     {
+        private const int InstallmentsPerYear = 12;
+        private const int InstallmentsTotal = 36;
         private readonly List<LoanOffer> offers;
 
         public ThreeYearLoanQuote(IEnumerable<LoanOffer> offers)
@@ -18,7 +20,7 @@
             var waightedRate = this.CalculateWaightedRate(amount);
             var monthlyPayment = this.CalculateMonthlyPayment(amount, waightedRate);
 
-            return new QuoteOffer { Amount = amount, Rate = waightedRate, MonthlyPayment = monthlyPayment, TotalPayment = monthlyPayment * 36m };
+            return new QuoteOffer { Amount = amount, Rate = waightedRate, MonthlyPayment = monthlyPayment, TotalPayment = monthlyPayment * InstallmentsTotal };
         }
 
         private decimal CalculateWaightedRate(decimal amount)
@@ -53,9 +55,9 @@
 
         private decimal CalculateMonthlyPayment(decimal amount, decimal rate)
         {
-            var monthlyRate = rate / 12m;
+            var monthlyRate = rate / InstallmentsPerYear;
 
-            return (monthlyRate + (monthlyRate / (Convert.ToDecimal(Math.Pow(Convert.ToDouble(1m + monthlyRate), 36d)) - 1m))) * amount;
+            return (monthlyRate + (monthlyRate / (Convert.ToDecimal(Math.Pow(Convert.ToDouble(1m + monthlyRate), InstallmentsTotal)) - 1m))) * amount;
         }
     }
 }
