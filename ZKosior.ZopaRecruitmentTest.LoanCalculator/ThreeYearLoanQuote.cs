@@ -6,8 +6,9 @@
 
     public class ThreeYearLoanQuote
     {
-        private const int InstallmentsPerYear = 12;
-        private const int InstallmentsTotal = 36;
+        private const double Years = 3d;
+        private const double InstallmentsPerYear = 12d;
+        private const decimal InstallmentsTotal = 36m;
         private readonly List<LoanOffer> offers;
 
         public ThreeYearLoanQuote(IEnumerable<LoanOffer> offers)
@@ -20,13 +21,19 @@
             var waightedRate = this.CalculateWaightedRate(amount);
             var monthlyPayment = this.CalculateMonthlyPayment(amount, waightedRate);
 
-            return new QuoteOffer { Amount = amount, Rate = waightedRate, MonthlyPayment = monthlyPayment, TotalPayment = monthlyPayment * InstallmentsTotal };
+            return new QuoteOffer
+            {
+                Amount = amount,
+                Rate = waightedRate,
+                MonthlyPayment = monthlyPayment,
+                TotalPayment = monthlyPayment * InstallmentsTotal
+            };
         }
 
         private decimal CalculateWaightedRate(decimal amount)
         {
             var outstandingAmount = amount;
-            var cumulativeRate = 0m;
+            var resultingRate = 0m;
             var currentStepAmount = 0m;
 
             foreach (var offer in this.offers)
@@ -42,7 +49,7 @@
                     outstandingAmount -= offer.Available;
                 }
 
-                cumulativeRate += offer.Rate * (currentStepAmount / amount);
+                resultingRate += offer.Rate * (currentStepAmount / amount);
 
                 if (outstandingAmount == 0)
                 {
@@ -50,16 +57,16 @@
                 }
             }
 
-            return cumulativeRate;
+            return resultingRate;
         }
 
         private decimal CalculateMonthlyPayment(decimal amount, decimal rate)
         {
-            var reverseEffectiveRate = (Convert.ToDecimal(Math.Pow(Convert.ToDouble(rate + 1), 1d / 12d)) - 1m) * InstallmentsPerYear;
+            var ratePlusOne = Convert.ToDouble(rate + 1m);
 
-            var monthlyRate = reverseEffectiveRate / InstallmentsPerYear;
+            var reverseEffectiveMonthlyRate = Math.Pow(ratePlusOne, 1d / InstallmentsPerYear) - 1d;
 
-            return (monthlyRate + (monthlyRate / (Convert.ToDecimal(Math.Pow(Convert.ToDouble(1m + monthlyRate), InstallmentsTotal)) - 1m))) * amount;
+            return Convert.ToDecimal(reverseEffectiveMonthlyRate + (reverseEffectiveMonthlyRate / (Math.Pow(ratePlusOne, Years) - 1d))) * amount;
         }
     }
 }
