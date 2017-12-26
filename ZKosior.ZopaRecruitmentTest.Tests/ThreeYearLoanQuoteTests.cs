@@ -64,8 +64,8 @@
 
             Assert.AreEqual(1000m, quote.Amount);
             Assert.AreEqual(0.07004m, quote.Rate);
-            Assert.AreEqual(30.878925761087660385244806m, quote.MonthlyPayment);
-            Assert.AreEqual(1111.641327399155773868813016m, quote.TotalPayment);
+            Assert.AreEqual(30.780594385544787309509699100m, quote.MonthlyPayment);
+            Assert.AreEqual(1108.1013978796123431423491676m, quote.TotalPayment);
         }
 
         private static List<LoanOffer> InitializeMrketData()

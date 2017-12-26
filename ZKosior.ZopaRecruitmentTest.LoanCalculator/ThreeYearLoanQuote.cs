@@ -55,7 +55,9 @@
 
         private decimal CalculateMonthlyPayment(decimal amount, decimal rate)
         {
-            var monthlyRate = rate / InstallmentsPerYear;
+            var reverseEffectiveRate = (Convert.ToDecimal(Math.Pow(Convert.ToDouble(rate + 1), 1d / 12d)) - 1m) * InstallmentsPerYear;
+
+            var monthlyRate = reverseEffectiveRate / InstallmentsPerYear;
 
             return (monthlyRate + (monthlyRate / (Convert.ToDecimal(Math.Pow(Convert.ToDouble(1m + monthlyRate), InstallmentsTotal)) - 1m))) * amount;
         }
