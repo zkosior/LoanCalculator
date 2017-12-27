@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using CsvHelper;
     using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
@@ -9,8 +10,10 @@
     {
         public IEnumerable<LoanOffer> LoadFrom(string file)
         {
-            var reader = new CsvReader(File.OpenText(file));
-            return reader.GetRecords<LoanOffer>();
+            using (var reader = new CsvReader(File.OpenText(file)))
+            {
+                return reader.GetRecords<LoanOffer>().ToList();
+            }
         }
     }
 }
