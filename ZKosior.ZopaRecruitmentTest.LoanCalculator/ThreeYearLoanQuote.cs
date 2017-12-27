@@ -62,11 +62,11 @@
 
         private decimal CalculateMonthlyPayment(decimal amount, decimal effectiveAnnualRate)
         {
-            var ratePlusOne = Convert.ToDouble(effectiveAnnualRate + 1m);
+            var ratePlusOne = effectiveAnnualRate + 1m;
 
-            var effectiveMonthlyRate = Math.Pow(ratePlusOne, 1d / InstallmentsPerYear) - 1d;
+            var effectiveMonthlyRate = Convert.ToDecimal(Math.Pow(Convert.ToDouble(ratePlusOne), 1d / InstallmentsPerYear)) - 1m;
 
-            return Convert.ToDecimal(effectiveMonthlyRate + (effectiveMonthlyRate / (Math.Pow(ratePlusOne, Years) - 1d))) * amount;
+            return (effectiveMonthlyRate + (effectiveMonthlyRate / ((ratePlusOne * ratePlusOne * ratePlusOne) - 1m))) * amount;
         }
     }
 }
