@@ -50,7 +50,7 @@
 
         private bool IsMarketDataValid(IEnumerable<LoanOffer> marketData)
         {
-            return marketData.All(p => p.Rate > 0);
+            return marketData.All(p => p.Rate > 0 && p.Available > 0);
         }
     }
 }

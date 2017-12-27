@@ -78,6 +78,20 @@
             Assert.Contains("Invalid market data.", validator.Error.Split("\r\n"));
         }
 
+        [Test]
+        public void WhenMarketDataOfferToLow_Invalid()
+        {
+            List<LoanOffer> marketData = new List<LoanOffer>
+            {
+                new LoanOffer { Lender = "Bob", Rate = 0.075m, Available = 0 }
+            };
+
+            var validator = DataValidator.Validate(marketData, 1000);
+
+            Assert.IsFalse(validator.IsDataValid);
+            Assert.Contains("Invalid market data.", validator.Error.Split("\r\n"));
+        }
+
         private static List<LoanOffer> InitializeMrketData()
         {
             return new List<LoanOffer>
