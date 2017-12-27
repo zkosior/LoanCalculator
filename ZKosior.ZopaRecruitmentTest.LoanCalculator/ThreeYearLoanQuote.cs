@@ -60,13 +60,13 @@
             return resultingRate;
         }
 
-        private decimal CalculateMonthlyPayment(decimal amount, decimal rate)
+        private decimal CalculateMonthlyPayment(decimal amount, decimal effectiveAnnualRate)
         {
-            var ratePlusOne = Convert.ToDouble(rate + 1m);
+            var ratePlusOne = Convert.ToDouble(effectiveAnnualRate + 1m);
 
-            var reverseEffectiveMonthlyRate = Math.Pow(ratePlusOne, 1d / InstallmentsPerYear) - 1d;
+            var effectiveMonthlyRate = Math.Pow(ratePlusOne, 1d / InstallmentsPerYear) - 1d;
 
-            return Convert.ToDecimal(reverseEffectiveMonthlyRate + (reverseEffectiveMonthlyRate / (Math.Pow(ratePlusOne, Years) - 1d))) * amount;
+            return Convert.ToDecimal(effectiveMonthlyRate + (effectiveMonthlyRate / (Math.Pow(ratePlusOne, Years) - 1d))) * amount;
         }
     }
 }
