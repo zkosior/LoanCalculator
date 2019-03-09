@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleApp": {
       "commandName": "Project",
-      "commandLineArgs": "..\\MarketData.csv 1000"
+      "commandLineArgs": "..\\..\\..\\..\\..\\Assignment\\MarketData.csv 1000"
     }
   }
 }

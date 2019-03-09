@@ -1,4 +1,4 @@
-namespace Engine
+namespace LoanCalculator.Engine
 {
     using System.Collections.Generic;
     using System.Linq;

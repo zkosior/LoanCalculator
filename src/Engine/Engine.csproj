@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>LoanCalculator.Engine</AssemblyName>
+    <RootNamespace>LoanCalculator.Engine</RootNamespace>
 	<CodeAnalysisRuleSet>$(SolutionDir)CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>

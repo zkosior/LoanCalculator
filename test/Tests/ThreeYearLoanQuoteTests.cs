@@ -1,6 +1,6 @@
-namespace Tests
+namespace LoanCalculator.Tests
 {
-    using Engine;
+    using LoanCalculator.Engine;
     using NUnit.Framework;
     using System.Collections.Generic;
 

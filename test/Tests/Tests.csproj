@@ -5,7 +5,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
-	<CodeAnalysisRuleSet>$(SolutionDir)CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>
+    <AssemblyName>LoanCalculator.Tests</AssemblyName>
+    <RootNamespace>LoanCalculator.Tests</RootNamespace>
+	<CodeAnalysisRuleSet>$(SolutionDir)CodeAnalysis\StyleCop.tests.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
 
@@ -15,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="$(SolutionDir)CodeAnalysis\StyleCop.tests.ruleset" Link="StyleCop.ruleset" />
+    <AdditionalFiles Include="$(SolutionDir)CodeAnalysis\StyleCop.tests.ruleset" Link="StyleCop.tests.ruleset" />
     <None Include="$(SolutionDir).editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -40,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Engine\Engine.csproj" />
+    <ProjectReference Include="..\..\src\Engine\Engine.csproj" />
   </ItemGroup>
 
 </Project>

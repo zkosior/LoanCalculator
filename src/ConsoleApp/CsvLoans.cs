@@ -1,7 +1,7 @@
-namespace ConsoleApp
+namespace LoanCalculator.ConsoleApp
 {
     using CsvHelper;
-    using Engine;
+    using LoanCalculator.Engine;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;

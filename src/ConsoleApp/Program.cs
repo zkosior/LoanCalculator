@@ -1,6 +1,6 @@
-namespace ConsoleApp
+namespace LoanCalculator.ConsoleApp
 {
-    using Engine;
+    using LoanCalculator.Engine;
     using System;
     using System.Globalization;
 

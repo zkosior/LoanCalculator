@@ -1,4 +1,4 @@
-namespace Engine
+namespace LoanCalculator.Engine
 {
     public class QuoteOffer
     {
