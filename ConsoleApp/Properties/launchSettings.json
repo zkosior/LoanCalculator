@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Zopa.RecruitmentTest.Console": {
+    "ConsoleApp": {
       "commandName": "Project",
       "commandLineArgs": "..\\MarketData.csv 1000"
     }

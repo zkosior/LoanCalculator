@@ -1,10 +1,10 @@
-namespace ZKosior.ZopaRecruitmentTest.Console
+namespace ConsoleApp
 {
     using CsvHelper;
+    using Engine;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
     public static class CsvLoans
     {

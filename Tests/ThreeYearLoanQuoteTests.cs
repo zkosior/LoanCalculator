@@ -1,8 +1,8 @@
-﻿namespace ZKosior.ZopaRecruitmentTest.Tests
+namespace Tests
 {
+    using Engine;
     using NUnit.Framework;
     using System.Collections.Generic;
-    using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
     [TestFixture]
     public class ThreeYearLoanQuoteTests
