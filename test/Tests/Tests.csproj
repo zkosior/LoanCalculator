@@ -7,7 +7,7 @@
     <StartupObject />
     <AssemblyName>LoanCalculator.Tests</AssemblyName>
     <RootNamespace>LoanCalculator.Tests</RootNamespace>
-	<CodeAnalysisRuleSet>$(SolutionDir)CodeAnalysis\StyleCop.tests.ruleset</CodeAnalysisRuleSet>
+	<CodeAnalysisRuleSet>..\..\CodeAnalysis\StyleCop.tests.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
 
@@ -17,20 +17,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="$(SolutionDir)CodeAnalysis\StyleCop.tests.ruleset" Link="StyleCop.tests.ruleset" />
+    <AdditionalFiles Include="..\..\CodeAnalysis\StyleCop.tests.ruleset" Link="StyleCop.tests.ruleset" />
     <None Include="$(SolutionDir).editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NSubstitute" Version="3.1.0" />
-    <PackageReference Include="NUnit" Version="3.9.0" />
-    <PackageReference Include="NUnit.ConsoleRunner" Version="3.7.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+    <PackageReference Include="NSubstitute" Version="4.0.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
