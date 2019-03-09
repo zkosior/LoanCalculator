@@ -1,14 +1,14 @@
-﻿namespace ZKosior.ZopaRecruitmentTest.Console
+namespace ZKosior.ZopaRecruitmentTest.Console
 {
+    using CsvHelper;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using CsvHelper;
     using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
-    public class CsvLoans
+    public static class CsvLoans
     {
-        public IEnumerable<LoanOffer> LoadFrom(string file)
+        public static List<LoanOffer> LoadFrom(string file)
         {
             using (var reader = new CsvReader(File.OpenText(file)))
             {

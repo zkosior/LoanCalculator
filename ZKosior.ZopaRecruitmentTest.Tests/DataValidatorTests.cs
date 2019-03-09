@@ -1,9 +1,7 @@
-﻿namespace ZKosior.ZopaRecruitmentTest.Tests
+namespace ZKosior.ZopaRecruitmentTest.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using NUnit.Framework;
+    using System.Collections.Generic;
     using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
     [TestFixture]
@@ -12,7 +10,7 @@
         [Test]
         public void WhenCorrectData_Valid()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var validator = DataValidator.Validate(marketData, 1000);
 
@@ -23,18 +21,18 @@
         [Test]
         public void WhenInsufficientMarketFunds_Invalid()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var validator = DataValidator.Validate(marketData, 2540);
 
             Assert.IsFalse(validator.IsDataValid);
-            Assert.Contains("It is not possible to provide a quote at this time due to insuficiend market funds.", validator.Error.Split("\r\n"));
+            Assert.Contains("It is not possible to provide a quote at this time due to insufficient market funds.", validator.Error.Split("\r\n"));
         }
 
         [Test]
-        public void WhenLoanNotDivisableBy100_Invalid()
+        public void WhenLoanNotDivisibleBy100_Invalid()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var validator = DataValidator.Validate(marketData, 2040);
 
@@ -45,29 +43,29 @@
         [Test]
         public void WhenLoanLessThan1000_Invalid()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var validator = DataValidator.Validate(marketData, 900);
 
             Assert.IsFalse(validator.IsDataValid);
-            Assert.Contains("Requested amount needs to be in rane 1000-15000.", validator.Error.Split("\r\n"));
+            Assert.Contains("Requested amount needs to be in range 1000-15000.", validator.Error.Split("\r\n"));
         }
 
         [Test]
         public void WhenLoanMoreThan15000_Invalid()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var validator = DataValidator.Validate(marketData, 15100);
 
             Assert.IsFalse(validator.IsDataValid);
-            Assert.Contains("Requested amount needs to be in rane 1000-15000.", validator.Error.Split("\r\n"));
+            Assert.Contains("Requested amount needs to be in range 1000-15000.", validator.Error.Split("\r\n"));
         }
 
         [Test]
         public void WhenMarketDataRangeToLow_Invalid()
         {
-            List<LoanOffer> marketData = new List<LoanOffer>
+            var marketData = new List<LoanOffer>
             {
                 new LoanOffer { Lender = "Bob", Rate = 0m, Available = 6400 }
             };
@@ -81,7 +79,7 @@
         [Test]
         public void WhenMarketDataOfferToLow_Invalid()
         {
-            List<LoanOffer> marketData = new List<LoanOffer>
+            var marketData = new List<LoanOffer>
             {
                 new LoanOffer { Lender = "Bob", Rate = 0.075m, Available = 0 }
             };
@@ -92,7 +90,7 @@
             Assert.Contains("Invalid market data.", validator.Error.Split("\r\n"));
         }
 
-        private static List<LoanOffer> InitializeMrketData()
+        private static List<LoanOffer> InitializeMarketData()
         {
             return new List<LoanOffer>
             {

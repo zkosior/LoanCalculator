@@ -1,7 +1,7 @@
 ﻿namespace ZKosior.ZopaRecruitmentTest.Tests
 {
-    using System.Collections.Generic;
     using NUnit.Framework;
+    using System.Collections.Generic;
     using ZKosior.ZopaRecruitmentTest.LoanCalculator;
 
     [TestFixture]
@@ -10,7 +10,7 @@
         [Test]
         public void SuccessScenario_ModifiedToNotRoundRate()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var quote = new ThreeYearLoanQuote(marketData).CalculateFor(1000);
 
@@ -21,7 +21,7 @@
         [Test]
         public void RequestedAmountLessThanLowestOffer_UsesSameRate()
         {
-            var marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var quote = new ThreeYearLoanQuote(marketData).CalculateFor(400);
 
@@ -45,9 +45,9 @@
         }
 
         [Test]
-        public void RequestedAmountMoreThanLowestOffer_AndDifferentRates_SumsWaightedRate()
+        public void RequestedAmountMoreThanLowestOffer_AndDifferentRates_SumsWeightedRate()
         {
-            var marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var quote = new ThreeYearLoanQuote(marketData).CalculateFor(500);
 
@@ -58,7 +58,7 @@
         [Test]
         public void CalculatesMonthlyAndTotalPayment()
         {
-            List<LoanOffer> marketData = InitializeMrketData();
+            var marketData = InitializeMarketData();
 
             var quote = new ThreeYearLoanQuote(marketData).CalculateFor(1000);
 
@@ -68,7 +68,7 @@
             Assert.AreEqual(1108.1013978803995791731902212m, quote.TotalPayment);
         }
 
-        private static List<LoanOffer> InitializeMrketData()
+        private static List<LoanOffer> InitializeMarketData()
         {
             return new List<LoanOffer>
             {

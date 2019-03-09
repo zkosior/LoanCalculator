@@ -1,4 +1,4 @@
-﻿namespace ZKosior.ZopaRecruitmentTest.LoanCalculator
+namespace ZKosior.ZopaRecruitmentTest.LoanCalculator
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,6 @@
 
     public class ThreeYearLoanQuote
     {
-        private const double Years = 3d;
         private const double InstallmentsPerYear = 12d;
         private const decimal InstallmentsTotal = 36m;
         private readonly List<LoanOffer> offers;
@@ -18,19 +17,28 @@
 
         public QuoteOffer CalculateFor(decimal amount)
         {
-            var waightedRate = this.CalculateWaightedRate(amount);
-            var monthlyPayment = this.CalculateMonthlyPayment(amount, waightedRate);
+            var weightedRate = this.CalculateWeightedRate(amount);
+            var monthlyPayment = CalculateMonthlyPayment(amount, weightedRate);
 
             return new QuoteOffer
             {
                 Amount = amount,
-                Rate = waightedRate,
+                Rate = weightedRate,
                 MonthlyPayment = monthlyPayment,
                 TotalPayment = monthlyPayment * InstallmentsTotal
             };
         }
 
-        private decimal CalculateWaightedRate(decimal amount)
+        private static decimal CalculateMonthlyPayment(decimal amount, decimal effectiveAnnualRate)
+        {
+            var ratePlusOne = effectiveAnnualRate + 1m;
+
+            var effectiveMonthlyRate = Convert.ToDecimal(Math.Pow(Convert.ToDouble(ratePlusOne), 1d / InstallmentsPerYear)) - 1m;
+
+            return (effectiveMonthlyRate + (effectiveMonthlyRate / ((ratePlusOne * ratePlusOne * ratePlusOne) - 1m))) * amount;
+        }
+
+        private decimal CalculateWeightedRate(decimal amount)
         {
             var outstandingAmount = amount;
             var resultingRate = 0m;
@@ -58,15 +66,6 @@
             }
 
             return resultingRate;
-        }
-
-        private decimal CalculateMonthlyPayment(decimal amount, decimal effectiveAnnualRate)
-        {
-            var ratePlusOne = effectiveAnnualRate + 1m;
-
-            var effectiveMonthlyRate = Convert.ToDecimal(Math.Pow(Convert.ToDouble(ratePlusOne), 1d / InstallmentsPerYear)) - 1m;
-
-            return (effectiveMonthlyRate + (effectiveMonthlyRate / ((ratePlusOne * ratePlusOne * ratePlusOne) - 1m))) * amount;
         }
     }
 }

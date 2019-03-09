@@ -1,4 +1,4 @@
-﻿namespace ZKosior.ZopaRecruitmentTest.Console
+namespace ZKosior.ZopaRecruitmentTest.Console
 {
     using System;
     using System.Globalization;
@@ -9,8 +9,8 @@
         private static void Main(string[] args)
         {
             var file = args[0];
-            var amount = decimal.Parse(args[1]);
-            var offers = new CsvLoans().LoadFrom(file);
+            var amount = decimal.Parse(args[1], CultureInfo.InvariantCulture);
+            var offers = CsvLoans.LoadFrom(file);
 
             var validator = DataValidator.Validate(offers, amount);
             if (!validator.IsDataValid)
